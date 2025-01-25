@@ -1,29 +1,25 @@
+use serde::Serialize;
 use std::time::SystemTime;
 
-use crate::transaction::Transaction;
-
-use serde::Serialize;
-// use sha2::{Digest, Sha256};
-
 #[derive(Debug, Serialize)]
-pub struct Block {
+pub struct Block<T> {
     timestamp: u128,
     hash: String,
     previous_hash: String,
-    transactions: Vec<Transaction>,
+    data: Vec<T>,
 }
 
-impl Block {
-    pub fn new(transactions: Vec<Transaction>, previous_hash: String) -> Self {
+impl<T: Serialize> Block<T> {
+    pub fn new(data: Vec<T>, previous_hash: String) -> Self {
         let timestamp = SystemTime::now()
             .duration_since(SystemTime::UNIX_EPOCH)
             .expect("time error")
             .as_millis();
-        let mut new_block = Block {
+        let mut new_block = Block::<T> {
             timestamp,
             hash: String::new(),
             previous_hash,
-            transactions,
+            data,
         };
         new_block.hash();
         return new_block;

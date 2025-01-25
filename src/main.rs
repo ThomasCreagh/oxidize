@@ -5,11 +5,7 @@ use crate::block::Block;
 use crate::transaction::Transaction;
 
 fn main() {
-    let transaction = Transaction {
-        sender: "a".into(),
-        reciever: "b".into(),
-        amount: 32.1,
-    };
+    let transaction = Transaction::new("bob".into(), "jenny".into(), 1023.67);
     let mut transactions: Vec<Transaction> = Vec::new();
     transactions.push(transaction);
 

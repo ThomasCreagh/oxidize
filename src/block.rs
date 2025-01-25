@@ -20,10 +20,10 @@ impl Block {
             .expect("time error")
             .as_millis();
         let mut new_block = Block {
-            timestamp: timestamp,
+            timestamp,
             hash: Vec::new(),
-            previous_hash: previous_hash,
-            transactions: transactions,
+            previous_hash,
+            transactions,
         };
         new_block.hash();
         return new_block;

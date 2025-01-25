@@ -1,2 +1,2 @@
-# Oxidize
+# oxidize
 a rust blockchain
